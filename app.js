@@ -106,7 +106,6 @@ async function getDaysForecastByLocation(data) {
 
 // This function receives the dates and forecast data and adds this information to the document
 function addForecast(dates, data) {
-    
     // That arrays that will save the data to the forecast days are declared
     forecastMaxTemps = [];
     forecastMinTemps = [];
@@ -145,7 +144,7 @@ function addForecast(dates, data) {
         nextDay.classList.add('forecast-days');
         nextDay.innerHTML = `
             <div class="weekday">
-                <p>${getDay(element)}</p>
+                <p>${element}</p>
                 
             </div>
             <div class="descForecast">
@@ -180,10 +179,10 @@ function getDatesForecast(data) {
 
     // For each Unix Timestamp saved it will be converted and saved in a new array
     forecastDays.forEach(day => {
-        var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        var options = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' };
         var s = new Date(day * 1000).toLocaleTimeString("en-US", options)
 
-        daysFormat.push(formatDate(s))
+        daysFormat.push(s.split(',')[0])
     })
 
     // The array with formatted dates will be returned
@@ -213,7 +212,6 @@ function formatDate(data) {
     var options = { year: 'numeric', month: 'long', day: 'numeric' };
     var today = new Date(data);
     var date = today.toLocaleDateString("en-US", options)
-    
     return date; 
 }
 
